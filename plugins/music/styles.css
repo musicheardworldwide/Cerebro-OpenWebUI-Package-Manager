@@ -1,36 +1,41 @@
 body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
-.container {
-    background-color: #fff;
+.card {
+    background-color: #2c3e50;
+    border-radius: 15px;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    margin: 10px;
 }
 
-h2 {
-    margin-bottom: 20px;
-    color: #333;
+.card h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #34495e;
+    padding-bottom: 10px;
 }
 
-input, textarea {
+.card input, .card textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #fff;
+    color: #333;
 }
 
-button {
+.card button {
     width: 100%;
     padding: 10px;
     background-color: #5cb85c;
@@ -41,12 +46,8 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.card button:hover {
     background-color: #4cae4c;
-}
-
-#upload-form, #profile-form {
-    display: none;
 }
 
 .toast {
