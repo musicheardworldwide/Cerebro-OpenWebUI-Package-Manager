@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-form">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="upload-form" style="display: none;">
+        <h2>Upload Music</h2>
+        <input type="file" id="music-file">
+        <button onclick="uploadMusic()">Upload</button>
+    </div>
+
+    <div id="profile-form" style="display: none;">
+        <h2>Update Profile</h2>
+        <input type="text" id="fullname" placeholder="Full Name">
+        <input type="email" id="email" placeholder="Email">
+        <textarea id="bio" placeholder="Bio"></textarea>
+        <button onclick="updateProfile()">Update</button>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
