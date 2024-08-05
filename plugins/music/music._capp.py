@@ -1,8 +1,8 @@
 """
 title: Music
 author: Wes Caldwell
-author_url: https://your-github-profile-url
-funding_url: https://your-funding-url
+author_url: https://github.com/musicheardworldwide/Cerebro-OpenWebUI-Package-Manager/edit/main/plugins
+funding_url: https://github.com/open-webui
 version: 0.1.0
 """
 
