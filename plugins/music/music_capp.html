@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="music" content="music">
+    <meta name="version" content="0.1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artist Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="login-form">
+    <div id="login-form" class="card">
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Username">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
     </div>
 
-    <div id="upload-form" style="display: none;">
+    <div id="upload-form" class="card" style="display: none;">
         <h2>Upload Music</h2>
         <input type="file" id="music-file">
         <button onclick="uploadMusic()">Upload</button>
     </div>
 
-    <div id="profile-form" style="display: none;">
+    <div id="profile-form" class="card" style="display: none;">
         <h2>Update Profile</h2>
         <input type="text" id="fullname" placeholder="Full Name">
         <input type="email" id="email" placeholder="Email">
@@ -28,6 +30,6 @@
         <button onclick="updateProfile()">Update</button>
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
