@@ -1,3 +1,5 @@
+let token = null;
+
 function showToast(message) {
     const toast = document.createElement('div');
     toast.className = 'toast';
@@ -15,7 +17,6 @@ function showToast(message) {
     }, 100);
 }
 
-// Example usage
 async function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -38,4 +39,41 @@ async function login() {
     } else {
         showToast('Login failed. Please check your credentials.');
     }
+}
+
+async function uploadMusic() {
+    const fileInput = document.getElementById('music-file');
+    const file = fileInput.files[0];
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch('/api/upload', {
+        method: 'POST',
+        headers: {
+            'Authorization': token
+        },
+        body: formData
+    });
+
+    const data = await response.json();
+    showToast(data.message);
+}
+
+async function updateProfile() {
+    const fullname = document.getElementById('fullname').value;
+    const email = document.getElementById('email').value;
+    const bio = document.getElementById('bio').value;
+
+    const response = await fetch('/api/update_profile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({ fullname, email, bio })
+    });
+
+    const data = await response.json();
+    showToast(data.message);
 }
