@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container" id="login-form">
+    <div id="login-form">
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Username">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
     </div>
 
-    <div class="container" id="upload-form" style="display: none;">
+    <div id="upload-form" style="display: none;">
         <h2>Upload Music</h2>
         <input type="file" id="music-file">
         <button onclick="uploadMusic()">Upload</button>
     </div>
 
-    <div class="container" id="profile-form" style="display: none;">
+    <div id="profile-form" style="display: none;">
         <h2>Update Profile</h2>
         <input type="text" id="fullname" placeholder="Full Name">
         <input type="email" id="email" placeholder="Email">
@@ -28,6 +28,68 @@
         <button onclick="updateProfile()">Update</button>
     </div>
 
-    <script src="scripts.js"></script>
+    <script>
+        let token = null;
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            if (data.token) {
+                token = data.token;
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('upload-form').style.display = 'block';
+                document.getElementById('profile-form').style.display = 'block';
+            } else {
+                alert('Login failed');
+            }
+        }
+
+        async function uploadMusic() {
+            const fileInput = document.getElementById('music-file');
+            const file = fileInput.files[0];
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                headers: {
+                    'Authorization': token
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+            alert(data.message);
+        }
+
+        async function updateProfile() {
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const bio = document.getElementById('bio').value;
+
+            const response = await fetch('/api/update_profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({ fullname, email, bio })
+            });
+
+            const data = await response.json();
+            alert(data.message);
+        }
+    </script>
 </body>
 </html>
