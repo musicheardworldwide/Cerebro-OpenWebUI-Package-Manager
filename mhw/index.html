@@ -31,6 +31,23 @@
     <script>
         let token = null;
 
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.className = 'toast show';
+                setTimeout(() => {
+                    toast.className = toast.className.replace('show', '');
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 500);
+                }, 3000);
+            }, 100);
+        }
+
         async function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -49,8 +66,9 @@
                 document.getElementById('login-form').style.display = 'none';
                 document.getElementById('upload-form').style.display = 'block';
                 document.getElementById('profile-form').style.display = 'block';
+                showToast('Login successful!');
             } else {
-                alert('Login failed');
+                showToast('Login failed. Please check your credentials.');
             }
         }
 
@@ -70,7 +88,7 @@
             });
 
             const data = await response.json();
-            alert(data.message);
+            showToast(data.message);
         }
 
         async function updateProfile() {
@@ -88,7 +106,7 @@
             });
 
             const data = await response.json();
-            alert(data.message);
+            showToast(data.message);
         }
     </script>
 </body>
